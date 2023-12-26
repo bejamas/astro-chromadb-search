@@ -6,8 +6,8 @@ export default {
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
-    themes: ["retro", "dim"],
-    darkTheme: "dim",
+    themes: ["cupcake", "synthwave"],
+    darkTheme: "synthwave",
     base: true,
     styled: true,
   },
