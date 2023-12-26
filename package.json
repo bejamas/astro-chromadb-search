@@ -4,10 +4,12 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
+    "start": "astro dev && yarn start:chroma",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "start:chroma": "chroma run --path ./chromadb",
+    "index-db": "node src/index-builder.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.3.4",
