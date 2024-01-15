@@ -1,0 +1,9 @@
+.DS_Store
+*.log
+.env.example
+!.env.production
+.gitignore
+.dockerignore
+Dockerfile
+node_modules
+dist
