@@ -1,16 +1,27 @@
 ---
+import { getCollection } from "astro:content";
+import MainLayout from "../layouts/main-layout.astro";
 
+const articles = await getCollection("posts");
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<MainLayout>
+  <div class="grid grid-cols-1 gap-6">
+    {
+      articles.map((article) => (
+        <a href={`/posts/${article.slug}`} class="no-underline">
+          <div class="card bg-gray-50 hover:bg-neutral transition-all group hover:ring-1 ring-white">
+            <div class="card-body p-4">
+              <h2 class="card-title text-base-300 !mb-0 group-hover:text-white">
+                {article.data.title}
+              </h2>
+              <div class="text-base-300 group-hover:text-white">
+                {article.body.substring(0, 100)}
+              </div>
+            </div>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</MainLayout>
