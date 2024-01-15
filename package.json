@@ -14,6 +14,7 @@
   "dependencies": {
     "@astrojs/check": "^0.3.4",
     "@astrojs/mdx": "^2.0.2",
+    "@astrojs/node": "^7.0.4",
     "@astrojs/react": "^3.0.8",
     "@astrojs/tailwind": "^5.0.4",
     "@types/react": "^18.2.45",
