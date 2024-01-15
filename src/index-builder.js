@@ -20,7 +20,9 @@ async function getPosts() {
 
 async function main() {
   const posts = await getPosts();
-  const client = new ChromaClient();
+  const client = new ChromaClient({
+    path: process.env.CHROMADB_PATH,
+  });
 
   // special class which will be passed to client and automatically create embeddings
   const embedder = new OpenAIEmbeddingFunction({

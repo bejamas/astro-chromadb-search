@@ -1,19 +1,14 @@
 import type { APIRoute } from "astro";
 import { ChromaClient, OpenAIEmbeddingFunction } from "chromadb";
 
-import { loadEnv } from "vite";
+const client = new ChromaClient({
+  path: import.meta.env.CHROMADB_PATH,
+});
 
-const { OPENAI_API_KEY } = loadEnv(
-  process.env.NODE_ENV as string,
-  process.cwd(),
-  ""
-);
-
-const client = new ChromaClient();
 const COLLECTION_NAME = "posts";
 
 const embedder = new OpenAIEmbeddingFunction({
-  openai_api_key: OPENAI_API_KEY as string,
+  openai_api_key: import.meta.env.OPENAI_API_KEY as string,
 });
 
 const collection = await client.getCollection({
