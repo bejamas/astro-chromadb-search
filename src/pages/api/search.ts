@@ -7,19 +7,21 @@ const client = new ChromaClient({
 
 const COLLECTION_NAME = "posts";
 
-const embedder = new OpenAIEmbeddingFunction({
-  openai_api_key: import.meta.env.OPENAI_API_KEY as string,
-});
-
-const collection = await client.getCollection({
-  name: COLLECTION_NAME,
-  embeddingFunction: embedder,
-});
-
 export const prerender = false;
 
 export const GET: APIRoute = async ({ url }) => {
   const query = url.searchParams.get("query");
+
+  console.log(import.meta.env);
+
+  const embedder = new OpenAIEmbeddingFunction({
+    openai_api_key: import.meta.env.OPENAI_API_KEY as string,
+  });
+
+  const collection = await client.getCollection({
+    name: COLLECTION_NAME,
+    embeddingFunction: embedder,
+  });
 
   // through an error if query param is not defined
   if (!query) {
