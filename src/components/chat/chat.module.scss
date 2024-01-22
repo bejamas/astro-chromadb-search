@@ -1,0 +1,20 @@
+.message {
+  ul,
+  ol {
+    @apply pl-5;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  p,
+  ul,
+  ol {
+    @apply mb-4 last:mb-0;
+  }
+}

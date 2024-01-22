@@ -1,27 +1,10 @@
 import type { APIRoute } from "astro";
-import { ChromaClient, OpenAIEmbeddingFunction } from "chromadb";
-
-const client = new ChromaClient({
-  path: import.meta.env.CHROMADB_PATH,
-});
-
-const COLLECTION_NAME = "posts";
+import { getSimilarPosts } from "../../base/chroma";
 
 export const prerender = false;
 
 export const GET: APIRoute = async ({ url }) => {
   const query = url.searchParams.get("query");
-
-  console.log(import.meta.env);
-
-  const embedder = new OpenAIEmbeddingFunction({
-    openai_api_key: import.meta.env.OPENAI_API_KEY as string,
-  });
-
-  const collection = await client.getCollection({
-    name: COLLECTION_NAME,
-    embeddingFunction: embedder,
-  });
 
   // through an error if query param is not defined
   if (!query) {
@@ -36,10 +19,7 @@ export const GET: APIRoute = async ({ url }) => {
   }
 
   // query items in ChromaDB with give query phrase
-  const results = await collection.query({
-    nResults: 100,
-    queryTexts: url.searchParams.get("query") as string,
-  });
+  const results = await getSimilarPosts(query);
 
   return new Response(JSON.stringify(results.metadatas[0], null, 2));
 };

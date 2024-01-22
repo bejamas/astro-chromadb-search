@@ -1,0 +1,29 @@
+---
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="flex flex-col min-h-screen">
+      <div class="bg-neutral mb-10 py-1">
+        <header class="container mx-auto max-w-3xl ">
+          <nav class="navbar  justify-between">
+            <div class="flex flex-1 gap-2">
+              <a href="/chat" class="btn text-base">Ask a question</a>
+              <a href="/" class="btn text-base">All Myths</a>
+              <a href="/greeks" class="btn text-base"> Greek Myths</a>
+              <a href="/nords" class="btn text-base"> Nordic Sagas</a>
+            </div>
+          </nav>
+        </header>
+      </div>
+
+      <slot />
+    </div>
+  </body>
+</html>

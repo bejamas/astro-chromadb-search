@@ -1,35 +1,19 @@
 ---
-import { Search } from "../components/search";
+import { Search } from "../components/search/search";
+import RootLayout from "./root-layout.astro";
 const { title } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-  </head>
-  <body>
-    <header class="container mx-auto mb-10">
-      <nav class="navbar bg-base-100 justify-between">
-        <div class="flex flex-1 gap-2">
-          <a href="/" class="btn text-base">Chroma Myths</a>
-          <a href="/greeks" class="btn text-base">Greek Myths</a>
-          <a href="/nords" class="btn text-base">Nordic Sagas</a>
-        </div>
-      </nav>
-    </header>
+<RootLayout title={title}>
+  <Search client:load />
 
-    <main class="container mx-auto">
-      <Search client:load />
-
-      <article
-        class="prose pb-20 dark:prose-invert mx-auto
-        prose-h1:font-bold prose-h1:text-5xl prose-h2:mb-4 prose-h2:mt-0
-        prose-a:text-blue-600 prose-p:text-justify prose-img:rounded-xl"
-      >
-        <slot />
-      </article>
-    </main>
-  </body>
-</html>
+  <main class="container mx-auto flex-1">
+    <article
+      class="prose pb-20 dark:prose-invert mx-auto
+    prose-h1:font-bold prose-h1:text-5xl prose-h2:mb-4 prose-h2:mt-0
+    prose-a:text-blue-600 prose-p:text-justify prose-img:rounded-xl"
+    >
+      <slot />
+    </article>
+  </main>
+</RootLayout>
