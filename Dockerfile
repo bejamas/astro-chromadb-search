@@ -7,6 +7,7 @@ COPY . .
 RUN yarn
 RUN yarn build
 RUN yarn index-db
+RUN yarn index-db:docs
 
 ENV HOST=0.0.0.0
 ENV PORT=3000

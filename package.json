@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "start:chroma": "chroma run --path ./chromadb",
-    "index-db": "node src/index-builder.js"
+    "index-db": "node src/index-builder.js",
+    "index-db:docs": "node src/index-docs.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.3.4",
